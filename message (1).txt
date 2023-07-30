@@ -1,0 +1,285 @@
+-- Decompiled by Electron BETA [ Made By (Co) ]
+-- Path: ReplicatedStorage.ReplicatedModules.EffectsFolder.Devs.Ted.PLANET // SHAPER.PLANET_SHAPER_POSE_EFFECT
+local S_TweenService_1 = game:GetService("TweenService")
+local S_RunService_2 = game:GetService("RunService")
+local S_CollectionService_3 = game:GetService("CollectionService")
+local u1 = require(require(game.ReplicatedStorage.ReplicatedModules.PathShortcuts).ReplicatedModules.KnitPackage.Trove)
+local u2 = require(script:FindFirstAncestor("ReplicatedModules").EffectsHandler)
+local S_UserInputService_4 = game:GetService("UserInputService")
+return (function(a1)
+local u1 = a1.Character
+local u2 = a1.PrimaryColor
+local u3 = a1.SecondaryColor
+local u4 = a1.CustomParticleName
+local u5 = a1.VisualizerIntensity
+local v6 = "HumanoidRootPart"
+local L_HumanoidRootPart_1 = u1:FindFirstChild(v6)
+else if L_HumanoidRootPart_1 then
+if not u1:FindFirstChildOfClass("Humanoid") then
+end
+return
+else if a1.Toggling then
+v6 = game.Players.LocalPlayer.Settings.ExtraProps
+if v6.Value == true then
+v6 = u1
+local u7 = v6.new()
+v6 = S_UserInputService_4.TouchEnabled
+if not v6 then
+v6 = game.Players.LocalPlayer
+local L_UI_2 = v6:WaitForChild("UI")
+L_UI_2.Enabled = false
+local u8 = false
+local L_Menus_3 = L_UI_2:WaitForChild("Menus")
+u7:Add(L_Menus_3.Changed:Connect((function(a1)
+print(a1, u8)
+if a1 == "Visible" then
+if u8 then
+if not L_UI_2.Menus.Visible then
+L_UI_2.Enabled = false
+u8 = false
+end
+end
+end
+end)))
+L_Menus_3 = S_UserInputService_4
+u7:Add(L_Menus_3.InputBegan:Connect((function(a1, a2)
+if a2 then
+return
+end
+if a1.KeyCode.Name == "M" then
+u8 = not u8
+L_UI_2.Enabled = not L_UI_2.Enabled
+end
+end)))
+local L_Disclaimer_4 = v6:FindFirstChild("Disclaimer")
+else if L_Disclaimer_4 then
+L_Disclaimer_4.Enabled = false
+L_Menus_3 = (function()
+L_Disclaimer_4.Enabled = true
+end)
+u7:Add(L_Menus_3)
+end
+local L_CinematicBlackBars_5 = v6:FindFirstChild(L_Menus_3)
+L_CinematicBlackBars_5.Enabled = true
+L_CinematicBlackBars_5.Upper.Position = L_Menus_3
+L_CinematicBlackBars_5.Lower.Position = L_Menus_3
+S_TweenService_1:Create(L_CinematicBlackBars_5.Upper, TweenInfo.new(2, Enum.EasingStyle.Quint, Enum.EasingDirection.InOut), {Position = UDim2.fromScale(0.5, -0.9)}):Play()
+S_TweenService_1:Create(L_CinematicBlackBars_5.Lower, TweenInfo.new(2, Enum.EasingStyle.Quint, Enum.EasingDirection.InOut, 0, false, 0.25), {Position = UDim2.fromScale(0.5, 0.9)}):Play()
+u7:Add((function()
+S_TweenService_1:Create(L_CinematicBlackBars_5.Upper, TweenInfo.new(0.3, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Position = UDim2.fromScale(0.5, -1.1)}):Play()
+S_TweenService_1:Create(L_CinematicBlackBars_5.Lower, TweenInfo.new(0.3, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Position = UDim2.fromScale(0.5, 1.1)}):Play()
+task.delay(0.5, (function()
+L_CinematicBlackBars_5.Enabled = false
+end))
+end))
+u7:Add((function()
+L_UI_2.Enabled = true
+end))
+end
+local u9 = v6(u8)
+u9.Name = L_UI_2
+local u10 = {}
+local u11 = {}
+for v12 = 1, L_Disclaimer_4, L_CinematicBlackBars_5 do
+local v13 = L_Menus_3("Part")
+v13.Size = "Part"(0.1, 1, 0.1)
+v13.CFrame = L_HumanoidRootPart_1.CFrame
+v13.Material = Enum.Material.Neon
+if not u2 then
+end
+v13.Color = Color3.fromRGB(11, 125, 248)
+v13.Anchored = true
+v13.CanCollide = false
+v13.CastShadow = false
+v13.Parent = u9
+u10[v12] = v13
+end
+local u14 = v12.StandHumanoidRootPart
+local u15 = u14.PoseMusic
+local u16 = nil
+local v17 = "StandOffPoseMusic"
+v13 = v13(v17)
+else if v13 then
+v13 = S_CollectionService_3
+v13 = v13(v17, "Summoned")
+else if not v13 then
+v13 = u1.Stand.StandHumanoidRootPart
+v17 = "StandOffPoseMusic"
+end
+end
+v17 = v17("Highlight")
+local u18 = v13(v17)
+u18.DepthMode = Enum.HighlightDepthMode.Occluded
+if not u2 then
+v17 = 0.435294
+end
+u18.OutlineColor = Color3.new(v17, 0.878431, 1)
+if not u2 then
+v17 = 0.435294
+end
+u18.FillColor = Color3.new(v17, 0.878431, 1)
+u18.FillTransparency = 0.9
+u18.OutlineTransparency = 0
+u18.Parent = u9
+u18.Adornee = u1
+local u19 = nil
+if a1.CustomBallReference then
+end
+u19.Character = v17
+u19.Size = v17
+u19.CFrame = v17
+u19.Anchored = v17
+u19.CanCollide = v17
+u19.Material = v17
+if not v17 then
+end
+u19.Color = v17
+u19.Parent = u9
+u19.CastShadow = v17
+local u20 = v17()
+u20.Transparency = 0.5
+if not u3 then
+if not u2 then
+end
+end
+u20.Color = Color3.new(0.435294, 0.878431, 1)
+u20.Parent = u9
+local u21 = Instance.new("Model", u9)
+local u22 = 1 / a1.BPM / 60
+task.spawn((function()
+while u1:FindFirstChild("Pose") do
+u18.OutlineTransparency = 0
+S_TweenService_1:Create(u18, TweenInfo.new(u22, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {OutlineTransparency = 1}):Play()
+task.wait(u22)
+end
+end))
+u7:Add(S_RunService_2.RenderStepped:Connect((function(a1)
+if u1 then
+else if not u1:IsDescendantOf(workspace) then
+end
+u7:Destroy()
+end
+else if not u1:FindFirstChild("Pose") then
+u7:Destroy()
+end
+if game.Players.LocalPlayer.Settings.ExtraProps.Value ~= true then
+u7:Destroy()
+end
+u14 = u14 + 1 + u15.PlaybackLoudness / 2 / 360 - u14 * 1 + u15.PlaybackLoudness / 2 / 360(a1 * 10, 0, 1)
+u14 = u14 * u5
+u16 = 8 * 1 + u15.PlaybackLoudness / 2 / 360 - u14(u14 - 1.5, 0, 1)
+u20.Size = u20.Size:Lerp(Vector3.zero, a1 * 0.65)
+workspace.CurrentCamera.FieldOfView = 70 + u16 * 5 * 25 / workspace.CurrentCamera.CFrame.p - L_HumanoidRootPart_1.CFrame.p.Magnitude
+u19.Size = Vector3.one * u16 * 6 * 25 / workspace.CurrentCamera.CFrame.p - L_HumanoidRootPart_1.CFrame.p.Magnitude
+u19.CFrame = L_HumanoidRootPart_1.CFrame
+u20.CFrame = L_HumanoidRootPart_1.CFrame
+local v1 = u19.Size.Magnitude
+local v2 = u20
+local v3 = v2.Size
+if v3.Magnitude < v1 then
+v1 = u20
+v3 = u19
+v1.Size = v3.Size
+end
+local v4, v5, v6 = v1(u21:GetChildren())
+for v7,v8 in v4 do
+local v9, v10, v11 = pairs(v8.Attachment:GetChildren())
+for v12,v13 in v9 do
+v13.TimeScale = u14 - 0.9 / 1.7 - 0.3 - 0.01 * u18.OutlineTransparency ^ 4
+v13.Transparency = NumberSequence.new(u18.OutlineTransparency)
+end
+end
+v4 = u14
+if v5 < v4 then
+v4 = u9
+v6 = "FloorRippleGrid"
+v4 = v4(v6)
+else if not v4 then
+v4 = v5.GetEffect
+v6 = u1
+v7.EffectParent = v8
+v11 = v12 ^ 2
+v7.Resonance = v8
+v7.GridSize = v8
+v7.CellSize = v8
+v5(v6, v7)
+end
+end
+local v14 = u14
+if v5 < v14 then
+v14 = v5 or "PoseParticle"
+v7 = 
+v6 = v7.ClientAssets
+local L_v14_1 = v5(v7)
+else if not L_v14_1 then
+v7 = v8.ClientAssets
+v6 = v7.P//S_R
+end
+L_v14_1.CFrame = v6
+L_v14_1.Parent = v6
+v6(v7, v8)
+local v15, v16, v17 = v6(v7)
+for v18,v19 in v15 do
+if v12 == 1 then
+v11 = u2
+if not v11 then
+end
+v11 = u3
+end
+v19.Color = v12
+v12(1)
+end
+end
+local v20 = u14
+if L_v14_1 < v20 then
+v20 = Instance.new
+local v21 = v20(L_v14_1)
+v21.Shape = L_v14_1
+v21.Material = L_v14_1
+v21.Transparency = L_v14_1
+if not L_v14_1 then
+v16 = 0.160784
+end
+v21.Color = L_v14_1
+else if L_v14_1 == 1 or not L_v14_1 
+v21.Color = L_v14_1
+v21.Size = L_v14_1
+v21.Anchored = L_v14_1
+v21.CanCollide = L_v14_1
+v21.CastShadow = L_v14_1
+v21.CFrame = L_v14_1
+v21.Parent = L_v14_1
+local v22 = 0.6
+v22.Transparency = v19
+v22.Size = v19
+L_v14_1()
+local v23 = 0.6
+L_v14_1(v16, v23)
+end
+local v24, v25, v26 = v21(L_v14_1)
+for v27,v28 in v24 do
+if not v22 then
+v22[v28] = v19
+end
+local v29 = u11
+v29[v28] = v19
+local v30 = u11
+v30[v28] = v13
+v28.Size = v13
+v28.CFrame = v13
+if not u3 then
+end
+else if not u2 then
+end
+v28.Color = Color3.new(1, 1, 1):Lerp(Color3.new(0.678431, 0.160784, 1), v13 / 180)
+end
+end)))
+return
+end
+end
+else if u7 then
+u7.Name = u9
+u9()
+u9.FieldOfView = u10
+end
+end)
